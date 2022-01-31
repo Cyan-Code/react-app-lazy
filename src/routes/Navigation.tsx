@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,32 +11,34 @@ import { routes } from '../01-lazyload/routes/routes';
 
 export const Navigation = () => {
   return (
-    <Router>
-      <div className='main-layout'>
-        <nav>
-          <img src={logo} alt="React logo" />
-          <ul>
+    <Suspense fallback={ <h1>Load...</h1> }>
+      <Router>
+        <div className='main-layout'>
+          <nav>
+            <img src={logo} alt="React logo" />
+            <ul>
+              {
+                routes.map(({path, to, name})=>(
+                  <li key={path}>
+                    <NavLink to={to} activeClassName='nav-active'>{name}</NavLink> 
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+          <Switch>
             {
-              routes.map(({path, to, name})=>(
-                <li key={path}>
-                  <NavLink to={to} activeClassName='nav-active'>{name}</NavLink> 
-                </li>
+              routes.map(({path, Component})=>(
+                <Route
+                  key={path}
+                  path={path}
+                  render={()=><Component/>}
+                />
               ))
             }
-          </ul>
-        </nav>
-        <Switch>
-          {
-            routes.map(({path, Component})=>(
-              <Route
-                key={path}
-                path={path}
-                render={()=><Component/>}
-              />
-            ))
-          }
-        </Switch>
-      </div>
-    </Router>
+          </Switch>
+        </div>
+      </Router>
+    </Suspense>
   )
 }
