@@ -9,9 +9,9 @@ interface Route {
   children?:[]
 }
 
-const LazyPage1 = lazy(()=>import('../pages/LazyPage1'));
-const LazyPage2 = lazy(()=>import('../pages/LazyPage1'));
-const LazyPage3 = lazy(()=>import('../pages/LazyPage1'));
+const LazyPage1 = lazy(()=>import(/* webpackChunkName: "Lazypage1" */'../pages/LazyPage1'));
+const LazyPage2 = lazy(()=>import(/* webpackChunkName: "Lazypage2" */'../pages/LazyPage1'));
+const LazyPage3 = lazy(()=>import(/* webpackChunkName: "Lazypage3" */'../pages/LazyPage1'));
 
 export const routes:Route[] = [
   {
