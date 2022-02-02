@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import logo from '../logo.svg';
 
-import { routes } from '../01-lazyload/routes/routes';
+import { routes } from './routes';
 
 export const Navigation = () => {
   return (
@@ -18,9 +18,9 @@ export const Navigation = () => {
             <img src={logo} alt="React logo" />
             <ul>
               {
-                routes.map(({path, to, name})=>(
+                routes.map(({path, name})=>(
                   <li key={path}>
-                    <NavLink to={to} activeClassName='nav-active'>{name}</NavLink> 
+                    <NavLink to={path} activeClassName='nav-active'>{name}</NavLink> 
                   </li>
                 ))
               }
