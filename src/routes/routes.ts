@@ -13,7 +13,7 @@ interface Route {
 export const routes:Route[] = [
   {
     path: '/lazyLayout',
-    Component: lazy( ()=>import(/* webpackChunkName: "LazyLayout" */'../01-lazyload/layout/LazyLayout') ),
+    Component: lazy( () => import(/* webpackChunkName: "LazyLayout" */ '../01-lazyload/layout/LazyLayout') ),
     name: 'lazyLayout Nested'
   },
   {
